@@ -5,8 +5,14 @@ on:
       - opened
 jobs:
   assign-label:
+    permissions:
+      issues: write
+    environment: testing
     runs-on: ubuntu-latest
     steps:
+      - name: gh actions
+        run: |
+          echo "${{ secrets.TOKEN }}"
       - name: Assign label
         if: contains(github.event.issue.title, 'bug')
         run: |
